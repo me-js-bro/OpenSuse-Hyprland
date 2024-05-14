@@ -1,6 +1,6 @@
 #!/bin/bash
 
-###### Hyprland Installation Script for Arch Linux ######
+####### Hyprland Installation Script for OpenSuse #######
 #                                                       #
 #       ███╗   ███╗ █████╗ ██╗  ██╗██╗███╗   ██╗        #
 #       ████╗ ████║██╔══██╗██║  ██║██║████╗  ██║        #
