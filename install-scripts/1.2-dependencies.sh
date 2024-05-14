@@ -27,26 +27,28 @@ note="${megenta}[ NOTE ]${end}"
 done="${cyan}[ DONE ]${end}"
 error="${red}[ ERROR ]${end}"
 
-# Set the name of the log file
-log="Install-Logs/bluetooth.log"
+# set the log file
+log="Install-Logs/dependencies.log"
 
 # install script dir
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/1-global.sh
 
-blue=(
-bluez
-blueman
+dependencies=(
+    devel_basis
 )
 
-# Bluetooth
+opi=(
+    opi
+    go
+)
 
-printf "${action} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$log"
-  done
+for deps in "${dependencies[@]}"; do
+    install_package_base "$deps" "$log"
+done
 
-printf "${note} - Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$log"
+for opis in "${opi[@]}"; do
+    install_package "$opis" "$log"
+done
 
 clear

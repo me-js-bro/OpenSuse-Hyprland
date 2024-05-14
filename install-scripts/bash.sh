@@ -24,29 +24,34 @@ end="\e[1;0m"
 attention="${yellow}[ ATTENTION ]${end}"
 action="${green}[ ACTION ]${end}"
 note="${megenta}[ NOTE ]${end}"
-done="${cyan}[ DONE ]${end}"
-error="${red}[ ERROR ]${end}"
+done="${cyan}[ DONE ]${end}" #
 
 # Set the name of the log file
-log="Install-Logs/bluetooth.log"
+log="Install-Logs/bash.log"
 
 # install script dir
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/1-global.sh
 
-blue=(
-bluez
-blueman
-)
+printf "${attention} - Now configuring your default ${green}Bash${end}\n" && sleep 1
+printf " \n \n"
 
-# Bluetooth
+# check if there is a .bash directory available. if available, then backup it.
+if [ -d ~/.bash ]; then
+    printf "${note} - A ${green}.bash${end} directory is available... Backing it up\n" && sleep 1
 
-printf "${action} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$log"
-  done
+    cp -r ~/.bash ~/.bash-back
+    printf "${done} - Backup done..\n \n"
+fi
 
-printf "${note} - Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$log"
+# now copy the .bash directory into the "$HOME" directory.
+printf "${action} - Now installing the bash related files. \n \n"
 
-clear
+git clone --depth=1 https://github.com/me-js-bro/Bash.git && sleep 1
+cd Bash
+chmod +x install.sh
+./install.sh
+
+if [ -d ~/.bash ]; then
+    printf "${done} - ${green}Bash${end} updated..\n" && sleep 1 && clear
+fi

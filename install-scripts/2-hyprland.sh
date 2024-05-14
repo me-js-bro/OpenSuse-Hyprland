@@ -28,25 +28,20 @@ done="${cyan}[ DONE ]${end}"
 error="${red}[ ERROR ]${end}"
 
 # Set the name of the log file
-log="Install-Logs/bluetooth.log"
+log="Install-Logs/hyprland.log"
 
 # install script dir
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/1-global.sh
 
-blue=(
-bluez
-blueman
+hypr=(
+hyprland
 )
 
-# Bluetooth
-
-printf "${action} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$log"
+# Hyprland
+printf "${action} Installing Hyprland...\n"
+ for HYPR in "${hypr[@]}"; do
+   install_package "$HYPR" "$log"
   done
-
-printf "${note} - Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$log"
 
 clear

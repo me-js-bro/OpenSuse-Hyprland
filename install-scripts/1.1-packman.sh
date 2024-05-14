@@ -28,25 +28,17 @@ done="${cyan}[ DONE ]${end}"
 error="${red}[ ERROR ]${end}"
 
 # Set the name of the log file
-log="Install-Logs/bluetooth.log"
+log="Install-Logs/packman.log"
 
-# install script dir
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/1-global.sh
+# packman repository
+packman_repo="https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/"
 
-blue=(
-bluez
-blueman
-)
 
-# Bluetooth
+# Adding Packman repository and switching over to Packman
+printf "${attention} - Adding Packman repository (Globally).... \n"
 
-printf "${action} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$log"
-  done
-
-printf "${note} - Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$log"
+sudo zypper -n --quiet ar --refresh -p 90 "$packman_repo" packman 2>&1 | tee -a "$log"
+sudo zypper --gpg-auto-import-keys refresh 2>&1 | tee -a "$log"
+sudo zypper -n dup --from packman --allow-vendor-change 2>&1 | tee -a "$log"
 
 clear

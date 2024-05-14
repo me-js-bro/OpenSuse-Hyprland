@@ -1,11 +1,15 @@
 #!/bin/bash
 
-###### Mahins Hyprland v1 installation script ######
-####################################################
-
-### Because I'm on a Desktop Computer and I don't have a laptop, I could not test scripts for the blurtooth brightness control and other festures...
-
-### I have took some of the scripts and made some changes from "Sol Does Tech" and "JaKooLit" hyprland dotfiles. here are the links of their dotfiles.
+###### Hyprland Installation Script for Arch Linux ######
+#                                                       #
+#       ███╗   ███╗ █████╗ ██╗  ██╗██╗███╗   ██╗        #
+#       ████╗ ████║██╔══██╗██║  ██║██║████╗  ██║        #
+#       ██╔████╔██║███████║███████║██║██╔██╗ ██║        #
+#       ██║╚██╔╝██║██╔══██║██╔══██║██║██║╚██╗██║        #
+#       ██║ ╚═╝ ██║██║  ██║██║  ██║██║██║ ╚████║        #
+#       ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝        #
+#                                                       #
+#########################################################
 
 # color defination
 red="\e[1;31m"
@@ -15,7 +19,6 @@ blue="\e[1;34m"
 megenta="\e[1;1;35m"
 cyan="\e[1;36m"
 end="\e[1;0m"
-
 
 
 clear
@@ -36,9 +39,8 @@ sleep 1
 
 
 # all the installation scripts
-install_script_dir=./install-scripts
+install_script_dir=install-scripts
 chmod +x "$install_script_dir"/*
-
 
 # initial texts
 attention="${yellow}[ ATTENTION ]${end}"
@@ -96,7 +98,7 @@ read -n1 -rep "Select: " SDDM_CFG
 printf " \n"
 
 ## Install zsh, oh-my-zsh and powerleven10k theme
-printf "${note} - Would like to install zsh, oh-my-zsh and powerlevel10k theme on your system? [ y/n ]\n"
+printf "${note} - Would like to install zsh, oh-my-zsh and powerlevel10k theme on your system? If not, then we will customize your Default Bash [ y/n ]\n"
 read -n1 -rep "Select: " zsh
 printf " \n"
 
@@ -123,12 +125,12 @@ clear
 
 if [[ $INST_PKGS == "Y" || $INST_PKGS == "y" ]]; then
 
-    "$install_script_dir/packman.sh"       # pacmkan repo
-    "$install_script_dir/dependencies.sh"       # dependencies
-    "$install_script_dir/hyprland.sh"      # hyprland
-    "$install_script_dir/hypr_pkgs.sh"  # Main packages
-    "$install_script_dir/cliphist.sh"  # Main packages
-    "$install_script_dir/fonts.sh"      # fonts
+    "$install_script_dir/1.1-packman.sh"       # pacmkan repo
+    "$install_script_dir/1.2-dependencies.sh"       # dependencies
+    "$install_script_dir/2-hyprland.sh"      # hyprland
+    "$install_script_dir/3-hypr_pkgs.sh"  # Main packages
+    "$install_script_dir/4-cliphist.sh"  # Main packages
+    "$install_script_dir/5-fonts.sh"      # fonts
 
     if [[ $bluetooth == "y" || $bluetooth == "Y" ]]; then
         "$install_script_dir/bluetooth.sh"  # install and setup bluetooth
@@ -152,7 +154,7 @@ fi
 
 # Copy Config Files
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
-    "$install_script_dir/dotfiles.sh"
+    "$install_script_dir/6-dotfiles.sh"
 
 else
     printf "${error} - Copying dotfiles cancled\n"
@@ -175,8 +177,7 @@ clear
 if [[ $zsh == "y" || $zsh == "Y" ]]; then
     "$install_script_dir/zsh.sh"
 else
-    printf "${error} - Installing and setting up the zsh is cancled\n"
-    printf "[ ERROR ] - Installing and setting up the zsh is cancled\n" 2>&1 | tee -a "$log" &>> /dev/null
+    "$install_script_dir/bash.sh"
 fi
 
 

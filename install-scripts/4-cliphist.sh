@@ -27,26 +27,26 @@ note="${megenta}[ NOTE ]${end}"
 done="${cyan}[ DONE ]${end}"
 error="${red}[ ERROR ]${end}"
 
-# Set the name of the log file
-log="Install-Logs/bluetooth.log"
+# set the log file
+log="Install-Logs/cliphist.log"
 
 # install script dir
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/1-global.sh
 
-blue=(
-bluez
-blueman
+package=(
+    go
 )
 
-# Bluetooth
+for pkg in "${package[@]}"; do
+  sudo zypper install -y "$pkg" 2>&1 | tee -a "$log"
+done
 
-printf "${action} Installing Bluetooth Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$log"
-  done
+# Install cliphist using go
+export PATH=$PATH:/usr/local/bin
+go install go.senan.xyz/cliphist@latest 2>&1 | tee -a "$log"
 
-printf "${note} - Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 2>&1 | tee -a "$log"
+# copy cliphist into /usr/local/bin for some reason it is installing in ~/go/bin
+sudo cp -r "$HOME/go/bin/cliphist" "/usr/local/bin/" 2>&1 | tee -a "$log"
 
 clear

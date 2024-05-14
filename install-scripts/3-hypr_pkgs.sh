@@ -1,5 +1,16 @@
 #!/bin/bash
 
+###### Hyprland Installation Script for Arch Linux ######
+#                                                       #
+#       ███╗   ███╗ █████╗ ██╗  ██╗██╗███╗   ██╗        #
+#       ████╗ ████║██╔══██╗██║  ██║██║████╗  ██║        #
+#       ██╔████╔██║███████║███████║██║██╔██╗ ██║        #
+#       ██║╚██╔╝██║██╔══██║██╔══██║██║██║╚██╗██║        #
+#       ██║ ╚═╝ ██║██║  ██║██║  ██║██║██║ ╚████║        #
+#       ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝        #
+#                                                       #
+#########################################################
+
 # color defination
 red="\e[1;31m"
 green="\e[1;32m"
@@ -26,7 +37,6 @@ source $ScrDir/1-global.sh
 # packages neeeded
 hypr_package=( 
   curl
-  dunst
   git
   grim
   ImageMagick
@@ -36,6 +46,7 @@ hypr_package=(
   kvantum-qt6
   kvantum-themes
   kvantum-manager
+  libnotify-tools
   lxappearance
   make
   network-manager-applet
@@ -47,7 +58,7 @@ hypr_package=(
   polkit-gnome
   python311-requests
   python311-pip
-  python3-pywal
+  python311-pywal
   qt5ct
   qt6ct
   qt6-svg-devel
@@ -57,6 +68,7 @@ hypr_package=(
   rofi-wayland
   sddm
   slurp
+  SwayNotificationCenter
   swappy
   swww
   tar
@@ -74,6 +86,8 @@ hypr_package_2=(
   # brightnessctl
   btop
   cava
+  mpv
+  mpv-mpris
 )
 
 # opi
