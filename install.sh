@@ -131,6 +131,7 @@ if [[ $INST_PKGS == "Y" || $INST_PKGS == "y" ]]; then
     "$install_script_dir/3-hypr_pkgs.sh"  # Main packages
     "$install_script_dir/4-cliphist.sh"  # Main packages
     "$install_script_dir/5-fonts.sh"      # fonts
+    "$install_script_dir/browser"      # browser
     "$install_script_dir/sddm.sh"       # setup
 
     if [[ $bluetooth == "y" || $bluetooth == "Y" ]]; then
