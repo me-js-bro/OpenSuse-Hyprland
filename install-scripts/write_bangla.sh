@@ -58,6 +58,7 @@ clear
 
 for pkgs in "${packages[@]}"; do
     install_package "$pkgs" "$log"
+done
 
 
 printf "${action} - Now building ${yellow}Openbangla Keyboard ${end}...\n"
