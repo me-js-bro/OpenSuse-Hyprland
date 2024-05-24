@@ -63,9 +63,7 @@ mkdir -p ~/.config
         sleep 1
 
         ln -sf ~/.config/hypr/btop ~/.config/btop
-        ln -sf ~/.config/hypr/dunst ~/.config/dunst
         ln -sf ~/.config/hypr/kitty ~/.config/kitty
-        ln -sf ~/.config/hypr/cava ~/.config/cava
         ln -sf ~/.config/hypr/neofetch ~/.config/neofetch
         ln -sf ~/.config/hypr/rofi ~/.config/rofi
         ln -sf ~/.config/hypr/swaylock ~/.config/swaylock
@@ -93,20 +91,13 @@ if [ -d $SCRIPT_DIR ]; then
     printf "[ DONE ] - All the necessary scripts have been executable.\n"  2>&1 | tee -a "$log" &>> /dev/null
     sleep 1
 
-    sed -i 's/"method = pipewire"/"method = pulse"/g' "$SCRIPT_DIR/cava.sh"
 else
     printf "${error} - Could not find necessary scripts\n"
     printf "[ ERROR ] - Could not find necessary scripts.\n"  2>&1 | tee -a "$log" &>> /dev/null
 fi
 
-WLDIR=/usr/share/wayland-sessions
-if [ -d "$WLDIR" ]; then
-    printf "${done} - $WLDIR found\n"
-else
-    printf "${attention} - $WLDIR NOT found, creating...\n"
-    sudo mkdir $WLDIR
-    sudo cp extras/hyprland.desktop /usr/share/wayland-sessions/
-fi
+# remove .git
+  sudo rm -rf ~/.config/hypr/.git
 
 gsettings set org.gnome.desktop.interface gtk-theme "theme"
 gsettings set org.gnome.desktop.interface icon-theme "Tela-circle-dracula"
