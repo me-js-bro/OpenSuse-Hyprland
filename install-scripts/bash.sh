@@ -45,13 +45,10 @@ if [ -d ~/.bash ]; then
 fi
 
 # now copy the .bash directory into the "$HOME" directory.
-printf "${action} - Now installing the bash related files. \n \n"
 
 git clone --depth=1 https://github.com/me-js-bro/Bash.git && sleep 1
 cd Bash
 chmod +x install.sh
 ./install.sh
 
-if [ -d ~/.bash ]; then
-    printf "${done} - ${green}Bash${end} updated..\n" && sleep 1 && clear
-fi
+printf "${attention} - Re-open the terminal after you finish your work....\n" && sleep 1 && clear
