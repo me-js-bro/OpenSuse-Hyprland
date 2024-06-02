@@ -37,6 +37,8 @@ source $ScrDir/1-global.sh
 # packages neeeded
 hypr_package=( 
   curl
+  ffmpeg
+  firefox
   git
   grim
   ImageMagick
@@ -67,6 +69,7 @@ hypr_package=(
   libqt5-qtgraphicaleffects
   rofi-wayland
   slurp
+  swaylock-effects
   SwayNotificationCenter
   swappy
   swww
@@ -91,7 +94,6 @@ hypr_package_2=(
 
 # opi
 opi_packages=(
-  swaylock-effects
   nwg-look
   wlogout
 )
