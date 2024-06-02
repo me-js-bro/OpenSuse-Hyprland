@@ -37,6 +37,8 @@ source $ScrDir/1-global.sh
 # packages neeeded
 hypr_package=( 
   curl
+  ffmpeg
+  firefox
   git
   grim
   ImageMagick
